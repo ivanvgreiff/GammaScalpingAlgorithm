@@ -168,7 +168,7 @@ def main():
     
     # Define data paths
     options_path = Path('./data/raw/options/feather/deribit/BTC')
-    futures_path = Path('./data/raw/options/feather/deribit/BTC')
+    futures_path = Path('./data/raw/futures/feather/deribit/BTC')
     
     total_issues = {
         'duplicates': 0,

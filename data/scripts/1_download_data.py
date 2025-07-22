@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 
 def main():
     start_date = '2019-03-30'
-    end_date = '2020-07-19'
+    end_date = '2025-07-20'
     
     # Download all BTC options in one call
     print(f"\n=== Downloading BTC options from {start_date} to {end_date} ===")
@@ -19,7 +19,8 @@ def main():
         start_date=start_date,
         end_date=end_date,
         format='feather',
-        kind='option'
+        kind='option',
+        skip_existing=False
     )
     
     # Download all BTC futures in one call
@@ -39,6 +40,22 @@ def main():
     #    kind='future'
     #)
     
+    spot_downloader = Downloader(
+        base_path="./data/raw/spot/",
+        max_concurrent_requests=10,
+        max_retries=3,
+        log_level='INFO'
+    )
+    spot_downloader.download(
+        exchange='binance',
+        symbol='BTCUSDT',
+        start_date=start_date,
+        end_date=end_date,
+        format='feather',
+        kind='spot',
+        skip_existing=False
+    )
+
     print("\n=== Download complete! ===")
 
 
